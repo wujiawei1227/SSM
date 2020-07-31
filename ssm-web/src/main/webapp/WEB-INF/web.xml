@@ -6,7 +6,7 @@
   <!-- 配置加载类路径的配置文件 -->
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>classpath:applactionContext.xml</param-value>
+    <param-value>classpath*:applactionContext.xml,classpath*:spring-security.xml</param-value>
   </context-param>
 
   <!-- 配置监听器 -->
@@ -24,6 +24,14 @@
   </filter>
   <filter-mapping>
     <filter-name>characterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   <!-- 前端控制器（加载classpath:springmvc.xml 服务器启动创建servlet） -->
@@ -52,5 +60,6 @@
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
+
   </welcome-file-list>
 </web-app>

@@ -1,5 +1,8 @@
 package com.domain;
 
+import com.Utils.DateUtils;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -14,10 +17,11 @@ public class Product {
     private String productNum;//唯一编号
     private String productName;//名称
     private String cityName;//出发城市
-    private Date date;//出发时间
+    @DateTimeFormat(pattern = "yy-MM-dd HH:mm")
+    private Date departureTime;//出发时间
     private double productPrice;//价格
     private String productDesc;//描述
-    private int productStatus;//状态 0开启 1关闭
+    private Integer productStatus;//状态 0开启 1关闭
     private String departureTimeStr;
     private String productStatusStr;
 
@@ -28,7 +32,7 @@ public class Product {
                 ", productNum='" + productNum + '\'' +
                 ", productName='" + productName + '\'' +
                 ", cityName='" + cityName + '\'' +
-                ", date=" + date +
+                ", departureTime=" + departureTime +
                 ", productPrice=" + productPrice +
                 ", productDesc='" + productDesc + '\'' +
                 ", productStatus=" + productStatus +
@@ -69,12 +73,12 @@ public class Product {
         this.cityName = cityName;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDepartureTime() {
+        return departureTime;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDepartureTime(Date departureTime) {
+        this.departureTime = departureTime;
     }
 
     public double getProductPrice() {
@@ -100,16 +104,25 @@ public class Product {
     public void setProductStatus(int productStatus) {
         this.productStatus = productStatus;
     }
-
     public String getDepartureTimeStr() {
+        if(departureTime!=null){
+            departureTimeStr= DateUtils.date2String(departureTime,"yyyy-MM-dd HH:mm:ss");
+        }
         return departureTimeStr;
     }
-
     public void setDepartureTimeStr(String departureTimeStr) {
         this.departureTimeStr = departureTimeStr;
     }
 
+
     public String getProductStatusStr() {
+        if (productStatus != null) {
+            // 状态 0 关闭 1 开启
+            if(productStatus==0)
+                productStatusStr="关闭";
+            if(productStatus==1)
+                productStatusStr="开启";
+        }
         return productStatusStr;
     }
 

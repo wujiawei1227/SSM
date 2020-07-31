@@ -5,5 +5,7 @@ import com.domain.Product;
 import java.util.List;
 
 public interface productService {
-    public List<Product> findAll() throws Exception;
+    public List<Product> findAll(int size, int page) throws Exception;
+
+    void save(Product product);
 }

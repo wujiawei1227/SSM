@@ -3,6 +3,7 @@ package com.service.Imp;
 
 import com.dao.productDao;
 import com.domain.Product;
+import com.github.pagehelper.PageHelper;
 import com.service.productService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,9 +25,14 @@ public class productServiceImp  implements productService {
 @Autowired
     private productDao dao;
     @Override
-    public List<Product> findAll() throws Exception {
-        System.out.println("service被执行"+dao);
+    public List<Product> findAll(int size, int page) throws Exception {
+        PageHelper.startPage(page,size);
         return dao.findAll();
+    }
+
+    @Override
+    public void save(Product product) {
+        dao.save(product);
     }
 
 

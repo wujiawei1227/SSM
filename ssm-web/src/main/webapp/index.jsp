@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<a href="/product/findAll.do">显示所有商品</a>
+<jsp:forward page="pages/main.jsp"></jsp:forward>
 
 </body>
 </html>

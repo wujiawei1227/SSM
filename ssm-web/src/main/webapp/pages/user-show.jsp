@@ -168,7 +168,7 @@
 				<!-- /.box-body -->
 
 				<!-- .box-footer-->
-				<div class="box-footer">
+				<%--<div class="box-footer">
 					<div class="pull-left">
 						<div class="form-group form-inline">
 							总共2 页，共14 条数据。 每页 <select class="form-control">
@@ -195,7 +195,7 @@
 						</ul>
 					</div>
 
-				</div>
+				</div>--%>
 				<!-- /.box-footer-->
 
 			</div>

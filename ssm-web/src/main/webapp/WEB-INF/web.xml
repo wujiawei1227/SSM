@@ -13,6 +13,9 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  <listener>
+    <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+  </listener>
   <!-- 解决中文乱码过滤器 -->
   <filter>
     <filter-name>characterEncodingFilter</filter-name>
@@ -52,7 +55,10 @@
   </servlet-mapping>
 
 
-
+<error-page>
+  <error-code>403</error-code>
+<location>/pages/403.jsp</location>
+</error-page>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

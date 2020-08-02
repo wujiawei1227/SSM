@@ -79,15 +79,15 @@
 			<!-- 内容头部 -->
 			<section class="content-header">
 			<h1>
-				角色管理 <small>全部角色</small>
+				资源权限管理 <small>全部权限</small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="${pageContext.request.contextPath}/index.jsp"><i
 						class="fa fa-dashboard"></i> 首页</a></li>
 				<li><a
-					href="${pageContext.request.contextPath}/role/findAll.do">角色管理</a></li>
+					href="${pageContext.request.contextPath}/permission/findAll.do">资源权限管理</a></li>
 
-				<li class="active">全部角色</li>
+				<li class="active">全部权限</li>
 			</ol>
 			</section>
 			<!-- 内容头部 /-->
@@ -108,11 +108,11 @@
 							<div class="pull-left">
 								<div class="form-group form-inline">
 									<div class="btn-group">
-										<button type="button" class="btn btn-default" title="新建" onclick="location.href='${pageContext.request.contextPath}/pages/role-add.jsp'">
+										<button type="button" class="btn btn-default" title="新建" onclick="location.href='${pageContext.request.contextPath}/pages/permission-add.jsp'">
 											<i class="fa fa-file-o"></i> 新建
 										</button>
 										
-										<button type="button" class="btn btn-default" title="刷新">
+										<button type="button" class="btn btn-default" title="刷新" onclick="location.href='${pageContext.request.contextPath}/permission/findAll.do?page=1&size=5'">
 											<i class="fa fa-refresh"></i> 刷新
 										</button>
 									</div>
@@ -136,22 +136,23 @@
 											id="selall" type="checkbox" class="icheckbox_square-blue">
 										</th>
 										<th class="sorting_asc">ID</th>
-										<th class="sorting_desc">角色名称</th>
-										<th class="sorting_asc sorting_asc_disabled">描述</th>										
+										<th class="sorting_desc">权限名称</th>
+										<th class="sorting_asc sorting_asc_disabled">URL</th>
 										<th class="text-center">操作</th>
 									</tr>
 								</thead>
 								<tbody>
 
-									<c:forEach items="${pageInfo.list}" var="role">
+									<c:forEach items="${pageInfo.list}" var="p">
 										<tr>
 											<td><input name="ids" type="checkbox"></td>
-											<td>${role.id }</td>
-											<td>${role.roleName }</td>
-											<td>${role.roleDesc }</td>																				
+											<td>${p.id }</td>
+											<td>${p.permissionName }</td>
+											<td>${p.url }</td>
 											<td class="text-center">
-												<a href="${pageContext.request.contextPath}/role/findById.do?id=${role.id}" class="btn bg-olive btn-xs">详情</a>
-												<a href="${pageContext.request.contextPath}/role/findRoleByIdAndAllPermission.do?id=${role.id}" class="btn bg-olive btn-xs">添加权限</a>	</td>
+												<a href="${pageContext.request.contextPath}/permission/findById.do?id=${p.id}" class="btn bg-olive btn-xs">详情</a>
+												<a href="${pageContext.request.contextPath}/permission/deletePermission.do?id=${p.id}" class="btn bg-olive btn-xs">删除权限</a>
+											</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -192,15 +193,15 @@
 						<div class="box-tools pull-right">
 							<ul class="pagination">
 								<li>
-									<a href="${pageContext.request.contextPath}/role/findAll.do?page=1&size=${pageInfo.pageSize}" aria-label="Previous">首页</a>
+									<a href="${pageContext.request.contextPath}/permission/findAll.do?page=1&size=${pageInfo.pageSize}" aria-label="Previous">首页</a>
 								</li>
-								<li><a href="${pageContext.request.contextPath}/role/findAll.do?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a></li>
+								<li><a href="${pageContext.request.contextPath}/permission/findAll.do?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a></li>
 								<c:forEach begin="1" end="${pageInfo.pages}" var="pageNum">
-									<li><a href="${pageContext.request.contextPath}/role/findAll.do?page=${pageNum}&size=${pageInfo.pageSize}">${pageNum}</a></li>
+									<li><a href="${pageContext.request.contextPath}/permission/findAll.do?page=${pageNum}&size=${pageInfo.pageSize}">${pageNum}</a></li>
 								</c:forEach>
-								<li><a href="${pageContext.request.contextPath}/role/findAll.do?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a></li>
+								<li><a href="${pageContext.request.contextPath}/permission/findAll.do?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a></li>
 								<li>
-									<a href="${pageContext.request.contextPath}/role/findAll.do?page=${pageInfo.pages}&size=${pageInfo.pageSize}" aria-label="Next">尾页</a>
+									<a href="${pageContext.request.contextPath}/permission/findAll.do?page=${pageInfo.pages}&size=${pageInfo.pageSize}" aria-label="Next">尾页</a>
 								</li>
 							</ul>
 						</div>

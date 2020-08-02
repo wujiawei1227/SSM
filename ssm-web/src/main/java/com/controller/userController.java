@@ -1,9 +1,12 @@
 package com.controller;
 
+import com.domain.Role;
 import com.domain.UserInfo;
 import com.github.pagehelper.PageInfo;
+import com.service.RoleService;
 import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,7 +25,10 @@ import java.util.List;
 public class userController {
     @Autowired
     private UserService service;
+    @Autowired
+    private RoleService roleService;
     @RequestMapping("/findAll.do")
+    @Secured("ROLE_ADMIN")
     public ModelAndView findAll(@RequestParam(required = true,defaultValue = "1") Integer page,
                                 @RequestParam(required = true,defaultValue = "4") Integer size){
 
@@ -30,9 +36,6 @@ public class userController {
         List<UserInfo> all=null;
         try {
            all = service.findAll(page,size);
-            for (UserInfo userInfo : all) {
-                System.out.println(userInfo);
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -54,4 +57,20 @@ public class userController {
         mv.setViewName("user-show");
         return mv;
     }
+    @RequestMapping("/findUserByIdAndAllRole.do")
+    public ModelAndView findUserByIdAndAllRole(int id)throws Exception {
+        ModelAndView mv=new ModelAndView();
+        UserInfo byId = service.findById(id);
+        List<Role> otherRole = roleService.findOtherRole(id);
+        mv.addObject("user",byId);
+        mv.addObject("roleList",otherRole);
+        mv.setViewName("user-role-add");
+        return mv;
+    }
+    @RequestMapping("/addRoleToUser.do")
+    public String addRoleToUser(int userId,int[] ids){
+        service.addRoleToUser(userId,ids);
+        return "redirect:findAll.do";
+    }
+
 }

@@ -29,6 +29,7 @@ public interface userDao {
             @Result(column = "id", property = "roles", javaType = List.class, many =
             @Many(select = "com.dao.roleDao.findRoleByUserId")) })
     public UserInfo findByName(String name) throws Exception;
+
     @Select("select * from users")
     @Results({
             @Result(id = true, property = "id", column = "id"),
@@ -40,6 +41,9 @@ public interface userDao {
             @Result(column = "id", property = "roles", javaType = List.class, many =
             @Many(select = "com.dao.roleDao.findRoleByUserId")) })
     public List<UserInfo> findAll() throws  Exception;
+
     @Insert("insert into users (email,username,password,phoneNum,status) value(#{email},#{username},#{password},#{phoneNum},#{status})")
     public void save(UserInfo userInfo);
+    @Insert("insert into users_role(userId,roleId) value(#{userId},#{roleId})")
+    public void addRoleToUser(@Param("userId") int userId,@Param("roleId")int roleId);
 }

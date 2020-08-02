@@ -71,5 +71,11 @@ public class UserServiceImp implements UserService {
         return byId;
     }
 
+    @Override
+    public void addRoleToUser(int userId, int[] roleIds) {
 
+        for (int i = 0; i < roleIds.length; i++) {
+            dao.addRoleToUser(userId,roleIds[i]);
+        }
+    }
 }

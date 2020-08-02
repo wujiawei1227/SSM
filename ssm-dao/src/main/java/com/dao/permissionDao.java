@@ -1,8 +1,8 @@
 package com.dao;
 
 import com.domain.Permission;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
+import com.domain.Role;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -15,4 +15,8 @@ public interface permissionDao {
 
     @Insert("insert into permission(permissionName,url) values(#{permissionName},#{url})")
     void save(Permission permission) throws Exception;
+    @Select("select * from permission where id=#{id}")
+    public Permission findById(int id);
+    @Select("select * from permission where id not in(select permissionId from role_permission where roleId=#{id})")
+    public List<Permission> findOtherPermission(int id);
 }

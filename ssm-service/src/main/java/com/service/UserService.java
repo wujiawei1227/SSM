@@ -16,4 +16,5 @@ import java.util.List;
         public List<UserInfo> findAll(int size, int page) throws Exception;
         public void save(UserInfo userInfo);
         public UserInfo findById(int id) throws Exception;
-}
+    public void addRoleToUser(int userId, int[] roleIds);
+    }

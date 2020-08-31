@@ -25,8 +25,8 @@ public class permissionController  {
     @Autowired
     private PermissionService service;
     @RequestMapping("/findAll.do")
-    public ModelAndView findAll(@RequestParam(required = true,defaultValue = "1") int page,
-                                @RequestParam(required = true,defaultValue = "5") int size) throws Exception{
+    public ModelAndView findAll(@RequestParam(required = true,defaultValue = "1") Integer page,
+                                @RequestParam(required = true,defaultValue = "5") Integer size) throws Exception{
         ModelAndView mv=new ModelAndView();
         List<Permission> all = service.findAll(size,page);
         PageInfo pageInfo = new PageInfo(all);

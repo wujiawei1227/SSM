@@ -22,7 +22,7 @@ public interface roleDao {
     @Select("select * from role where id not in (select roleId from users_role where userId=#{id})")
     public List<Role> findOtherRole(int id);
     @Insert("insert into role_permission (roleId,permissionId) value(#{roleId},#{permissionId})")
-    public void addPermissionToRole(@Param("roleId") int roleId,@Param("permissionId")int permissionId);
+    public void addPermissionToRole(@Param("roleId") Integer roleId,@Param("permissionId")Integer permissionId);
 @Select("select * from role where id=#{id}")
 @Results({
         @Result(id = true,property = "id",column = "id"),

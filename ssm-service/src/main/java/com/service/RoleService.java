@@ -12,9 +12,9 @@ import java.util.List;
  **/
 
 public interface RoleService {
-    public List<Role> findAll(int page,int size) throws Exception;
+    public List<Role> findAll(Integer page,Integer size) throws Exception;
     public void save(Role role);
-    public List<Role> findOtherRole(int id);
-    public Role findById(int id);
-    public void addPermissionToRole(int roleId,int[] permissionIds);
+    public List<Role> findOtherRole(Integer id);
+    public Role findById(Integer id);
+    public void addPermissionToRole(Integer roleId,int[] permissionIds);
 }

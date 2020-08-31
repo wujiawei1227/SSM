@@ -22,7 +22,7 @@ public class RoleServiceImp implements RoleService {
     @Autowired
     private roleDao dao;
     @Override
-    public List<Role> findAll(int page,int size) throws Exception {
+    public List<Role> findAll(Integer page,Integer size) throws Exception {
         PageHelper.startPage(page,size);
         return dao.findAll();
     }
@@ -33,17 +33,17 @@ public class RoleServiceImp implements RoleService {
     }
 
     @Override
-    public List<Role> findOtherRole(int id) {
+    public List<Role> findOtherRole(Integer id) {
         return dao.findOtherRole(id);
     }
 
     @Override
-    public Role findById(int id) {
+    public Role findById(Integer id) {
         return dao.findById(id);
     }
 
     @Override
-    public void addPermissionToRole(int roleId, int[] permissionIds) {
+    public void addPermissionToRole(Integer roleId, int[] permissionIds) {
         for (int i = 0; i < permissionIds.length; i++) {
             dao.addPermissionToRole(roleId,permissionIds[i]);
         }

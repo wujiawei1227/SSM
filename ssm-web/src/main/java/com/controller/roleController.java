@@ -29,8 +29,8 @@ public class roleController {
     @Autowired
     private PermissionService permissionService;
     @RequestMapping("/findAll.do")
-    public ModelAndView findAll(@RequestParam(required = true,defaultValue = "1") int page,
-                                @RequestParam(required = true,defaultValue = "5") int size){
+    public ModelAndView findAll(@RequestParam(required = true,defaultValue = "1") Integer page,
+                                @RequestParam(required = true,defaultValue = "5") Integer size){
         ModelAndView mv=new ModelAndView();
         List<Role>all=null;
         try {
@@ -49,7 +49,7 @@ public class roleController {
         return "redirect:findAll.do";
     }
     @RequestMapping("/findRoleByIdAndAllPermission.do")
-    public ModelAndView findRoleByIdAndALlPermission(@RequestParam(name = "id",required = true) int roleId){
+    public ModelAndView findRoleByIdAndALlPermission(@RequestParam(name = "id",required = true) Integer roleId){
         ModelAndView mv=new ModelAndView();
         Role byId = service.findById(roleId);
         mv.addObject("role",byId);
@@ -59,13 +59,13 @@ public class roleController {
         return mv;
     }
     @RequestMapping("/addPermissionToRole.do")
-    public String addPermissionToRole(@RequestParam(name = "roleId")int roleId,
+    public String addPermissionToRole(@RequestParam(name = "roleId")Integer roleId,
                                       @RequestParam(name = "ids")int[] permissionIds){
         service.addPermissionToRole(roleId,permissionIds);
         return "redirect:findAll.do";
     }
     @RequestMapping("/findById.do")
-    public ModelAndView findById(@RequestParam(required = true) int id) throws Exception{
+    public ModelAndView findById(@RequestParam(required = true) Integer id) throws Exception{
         ModelAndView mv=new ModelAndView();
         Role byId = service.findById(id);
         mv.addObject("role",byId);

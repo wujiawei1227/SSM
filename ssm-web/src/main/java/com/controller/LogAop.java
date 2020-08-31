@@ -1,7 +1,7 @@
 package com.controller;
 
 import com.domain.SysLog;
-import com.domain.UserInfo;
+
 import com.service.SysLogService;
 
 import org.aspectj.lang.JoinPoint;
@@ -62,9 +62,9 @@ public class LogAop {
     @After("execution(* com.controller.*.*(..))")
     public void doAfter(JoinPoint jp)throws Exception{
         //获取类上的requestmapping对象
-        if (excutionClass!=SysLogController.class){
+        if (excutionClass!=null&&excutionClass!=SysLogController.class){
            RequestMapping classAnnotation=(RequestMapping) excutionClass.getAnnotation(RequestMapping.class);
-            if (classAnnotation!=null){
+            if (classAnnotation!=null&&excutionMethod!=null){
                 //获取方法上的requestmapping对象
                 RequestMapping methodAnnotation = excutionMethod.getAnnotation(RequestMapping.class);
                 if (methodAnnotation!=null){
